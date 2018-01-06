@@ -10,26 +10,29 @@ button.addEventListener('click', function() {
     
     var request = new XMLHttpRequest();
 
-    request.open('GET', 'http://api.aerisapi.com/forecasts/' + zip + '?client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET);
+    request.open('GET', 'http://api.aerisapi.com/forecasts/'+ zip +'?client_id='+ CLIENT_ID + '&client_secret=' + CLIENT_SECRET);
 
     request.onload = function () {
         zip = document.getElementById('zip').value;
         if (request.readyState === 4 && request.status === 200) {
 
-            var data = JSON.parse(request.responseText);
-            console.log(data);
-
-
+            var responseData = JSON.parse(request.responseText);
+                //   console.log(responseData);
+            renderText(responseData);
         }
-
-
-
     };
-
     request.send();
 });
 
-function renderText(data){
-    var dataContent = "";
-    dataContainer.innerHTML = 'render text works';
+function renderText(responseData){
+    var renderData = document.getElementById('data');
+    var tempF = responseData.response[0].periods[0].avgTempF;
+    var tempC = responseData.response[0].periods[0].avgTempC;
+
+    //text var's
+    var todayF = "Today's temperature is " + tempF + "&#176;F";
+    var todayC = tempC + "&#176;C";
+
+    // Final text to render
+    renderData.innerHTML = todayF +" and "+ todayC;
 }
