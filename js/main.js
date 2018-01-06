@@ -1,7 +1,7 @@
 // 
 var CLIENT_ID = 'fmvWxQCwHX8ALA2ayj1P9';
 var CLIENT_SECRET = 'gMHQeWcRF5g0a01QxPA3WkBj4AhFsPg7ocTrLr0N';
-
+var dataContainer = document.getElementById('data');
 var zip = 10453;
 
 
@@ -30,6 +30,6 @@ button.addEventListener('click', function() {
     request.send();
 });
 
-function renderText(){
-    
+function renderText(data){
+    dataContainer.innerHTML = 
 }
