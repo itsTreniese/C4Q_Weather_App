@@ -1,6 +1,6 @@
 // 
-var CLIENT_ID = 'fmvWxQCwHX8ALA2ayj1P9';
-var CLIENT_SECRET = 'gMHQeWcRF5g0a01QxPA3WkBj4AhFsPg7ocTrLr0N';
+var CLIENT_ID = config.ID;
+var CLIENT_SECRET = config.SECRET;
 var dataContainer = document.getElementById('data');
 var zip = 10453;
 
@@ -18,7 +18,7 @@ button.addEventListener('click', function() {
         if (request.readyState === 4 && request.status === 200) {
 
             var data = JSON.parse(request.responseText);
-            //console.log(data);
+            console.log(data);
 
 
         }
@@ -31,5 +31,6 @@ button.addEventListener('click', function() {
 });
 
 function renderText(data){
-    dataContainer.innerHTML = 
+    var dataContent = "";
+    dataContainer.innerHTML = 'render text works';
 }
