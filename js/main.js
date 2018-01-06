@@ -1,4 +1,3 @@
-// 
 var CLIENT_ID = config.ID;
 var CLIENT_SECRET = config.SECRET;
 var dataContainer = document.getElementById('data');
