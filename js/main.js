@@ -28,18 +28,26 @@ function renderText(responseData){
     var renderData = document.getElementById('data');
     var weather = responseData.response[0].periods[0];
 
-    var tempF = weather.avgTempF;
-    var tempC = weather.avgTempC;
-    var minTempF = weather.minTempF;
+    //Fahrenheit
     var maxTempF = weather.maxTempF;
+    var minTempF = weather.minTempF;
+
+    //Celcius
+    var maxTempC = weather.maxTempC;
+    var minTempC = weather.minTempC;
+    
     var forecastDate = weather.dateTimeISO;
 
     //text var's
-    var todayF = "Today's temperature is " + tempF + "&#176;F";
-    var todayC = tempC + "&#176;C";
+    var displayMax = "Today's High temperature is " + minTempF + "&#176;F";
+    var displayMin = "with a low of "tempC + "&#176;C";
+
+    // if(){
+
+    // }
 
     // Weather in F and C
-    renderData.innerHTML = todayF +" and "+ todayC;
+    renderData.innerHTML = displayF +" and "+ displayC;
 
     //Display all days
     var dailyForecast = document.querySelectorAll('.box');
