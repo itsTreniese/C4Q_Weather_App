@@ -35,19 +35,21 @@ function renderText(responseData){
     //Celcius
     var maxTempC = weather.maxTempC;
     var minTempC = weather.minTempC;
-    
+
+    //Date
     var forecastDate = weather.dateTimeISO;
 
     //text var's
-    var displayMax = "Today's High temperature is " + minTempF + "&#176;F";
-    var displayMin = "with a low of "tempC + "&#176;C";
+    var displayMax = "Today's High temperature is " + maxTempF + "&#176;F";
+    var displayMin = " with a low of " + minTempF + "&#176;F";
 
-    // if(){
+    // if(minTempF < 32 || minTempC <= 0){
+ 
 
     // }
 
-    // Weather in F and C
-    renderData.innerHTML = displayF +" and "+ displayC;
+    // Weather display
+    renderData.innerHTML = displayMax + displayMin + forecastDate;
 
     //Display all days
     var dailyForecast = document.querySelectorAll('.box');
