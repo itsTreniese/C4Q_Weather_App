@@ -67,24 +67,23 @@ function renderText(responseData){
     var days = responseData.response[0].periods;
 
     for(let i = 0; i < days.length;i++){
-        
-       
 
         var dailyHigh = days[i].maxTempF;
         var dailyLow = days[i].minTempF;
         var dailyDate = days[i].dateTimeISO;
         var img = days[i].icon;
+        var timestamp = days[i].timestamp;
 
-         console.log(dailyHigh, dailyLow, dailyDate);
+         console.log(dailyHigh, dailyLow, dailyDate, timestamp);
             console.log("The Daily High for "+dailyDate+" is "+dailyHigh);
 
         var dailyForecastContainer = document.querySelectorAll('.box');
         
-        for(let x = 0; x < dailyForecastContainer.length; i++){
+        // for(let x = 0; x < dailyForecastContainer.length; i++){
 
-            dailyForecastContainer[x].innerHTML = "I'm the container at" + x;
+        //     dailyForecastContainer[x].innerHTML = "I'm the container at" + x;
 
-        }
+        // }
     }
 
 
