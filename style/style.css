@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
     max-width: 960px;
+    max-height: auto;
 
 }
 #data{
@@ -14,10 +15,11 @@
 
 .weatherDisplay{
     display:grid;
+    max-width: 100%;
     grid-template-columns:repeat(7, 1fr);
     grid-template-rows: auto;
 }
 .box{
-    background-color: gray;
-    font-size: .5em;
+
+    font-size: 1em;
 }

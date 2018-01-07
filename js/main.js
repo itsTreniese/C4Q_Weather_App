@@ -41,26 +41,36 @@ function renderText(responseData){
 
     //text var's
     var displayMax = "Today's High temperature is " + maxTempF + "&#176;F";
-    var displayMin = " with a low of " + minTempF + "&#176;F";
+    var displayMin = " with a low of " + minTempF + "&#176;F.";
 
-    // if(minTempF < 32 || minTempC <= 0){
- 
+        if (maxTempF || minTempF < 32){
+    
+           // console.log("The temp is below freezing.")
+        }
 
-    // }
+        if (maxTempC || minTempC < 0) {
+
+           // console.log("The temp is below freezing.")
+        }
 
     // Weather display
-    renderData.innerHTML = displayMax + displayMin + forecastDate;
+        renderData.innerHTML = displayMax + displayMin + "<br>" + forecastDate;
+        
+      //  console.log(JSON.stringify(forecastDate));
+
+      //  console.log(typeof maxTempC);
 
     //Display all days
     var dailyForecast = document.querySelectorAll('.box');
-    for(let i = 0; i < dailyForecast.length; i++){
-        var box = dailyForecast[i];
-        var days = responseData.response[0].periods;
-        for( let i = 0; i < days.length; i++) {
-            days[i];
-            dailyForecast.innerHTML = minTempF + maxTempF
-        }
+    var x;
+    dailyForecast.forEach( div => {
 
-    }
+        var weatherRender1 = document.getElementById('box_1');
+        weatherRender1.innerHTML = responseData.response[0].periods[0].maxTempF;
+
+
+    });
+
+
 
 }
