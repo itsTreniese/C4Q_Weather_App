@@ -38,49 +38,62 @@ function renderText(responseData) {
     var maxTempC = weather.maxTempC;
     var minTempC = weather.minTempC;
 
-    //Date
-    var forecastDate = weather.dateTimeISO;
-
-    //text var's
+    //Display current weather
     var displayMax = "Today's High temperature is " + maxTempF + "&#176;F";
     var displayMin = " with a low of " + minTempF + "&#176;F.";
 
+    //Conditional display for freezing temps
     if (maxTempF || minTempF < 32) {
 
         // console.log("The temp is below freezing.")
+    } else {
+
     }
 
     if (maxTempC || minTempC < 0) {
 
         // console.log("The temp is below freezing.")
+    } else {
+
     }
 
     // Weather display
     renderData.innerHTML = displayMax + "<br>" + displayMin;
 
-
-
     //Display all days
     var days = responseData.response[0].periods;
     var dailyForecastContainer = document.querySelectorAll('.box');
 
+    //Loop thru days of forecast
     for (let i = 0; i < days.length; i++) {
 
         var dailyHigh = days[i].maxTempF;
         var dailyLow = days[i].minTempF;
-        var dailyDate = days[i].dateTimeISO;
+        var dailyDate;
         var img;
-        var imgSrc =  "icons/"+days[i].icon;
+        var imgSrc = days[i].icon;
         var timestamp = days[i].timestamp;
 
+        //Loop thru .box to display daily forecast
         for (var x = 0; x < dailyForecastContainer.length; x++) {
 
-            dailyForecastContainer[x].innerHTML = dailyHigh + "&#176;F" + "<br>" + dailyLow + "&#176;F";
-            img = document.createElement('IMG');
-            img.setAttribute('src', "icons/blizzard.png");
-            img.setAttribute("width", "55");
-            img.setAttribute("height", "55");
-            dailyForecastContainer[x].appendChild(img);
+            dailyForecastContainer[x].innerHTML = "High " + dailyHigh + "&#176;F" + 
+                                                    "<br>" + dailyLow + "&#176;F";
+                
+                //Date for weather
+                var forecastDate = weather.dateTimeISO;
+                dailyDate = document.createElement('p');
+                dailyDate.innerHTML = forecastDate;
+                
+                //weather image
+                img = document.createElement('IMG');
+                img.setAttribute('src', "icons/"+ imgSrc);
+                img.setAttribute("width", "55");
+                img.setAttribute("height", "55");
+                dailyForecastContainer[x].appendChild(img);
+                dailyForecastContainer[x].insertBefore(dailyDate);
+
+
 
         }
     }
