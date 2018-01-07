@@ -26,13 +26,31 @@ button.addEventListener('click', function() {
 
 function renderText(responseData){
     var renderData = document.getElementById('data');
-    var tempF = responseData.response[0].periods[0].avgTempF;
-    var tempC = responseData.response[0].periods[0].avgTempC;
+    var weather = responseData.response[0].periods[0];
+
+    var tempF = weather.avgTempF;
+    var tempC = weather.avgTempC;
+    var minTempF = weather.minTempF;
+    var maxTempF = weather.maxTempF;
+    var forecastDate = weather.dateTimeISO;
 
     //text var's
     var todayF = "Today's temperature is " + tempF + "&#176;F";
     var todayC = tempC + "&#176;C";
 
-    // Final text to render
+    // Weather in F and C
     renderData.innerHTML = todayF +" and "+ todayC;
+
+    //Display all days
+    var dailyForecast = document.querySelectorAll('.box');
+    for(let i = 0; i < dailyForecast.length; i++){
+        var box = dailyForecast[i];
+        var days = responseData.response[0].periods;
+        for( let i = 0; i < days.length; i++) {
+            days[i];
+            dailyForecast.innerHTML = minTempF + maxTempF
+        }
+
+    }
+
 }

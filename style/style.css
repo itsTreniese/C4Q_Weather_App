@@ -3,5 +3,20 @@
 *{
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
-    width: 800px;
+    max-width: 960px;
+}
+#data{
+    margin: 10% 0;
+    font-size: 2em;
+
+}
+
+.weatherDisplay{
+    display:grid;
+    grid-template-columns:repeat(7, 1fr);
+    grid-template-rows: auto;
+}
+.box{
+    background-color: gray;
+    font-size: .5em;
 }
