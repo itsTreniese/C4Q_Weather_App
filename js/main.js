@@ -6,11 +6,11 @@ var zip = 10453;
 
 
 var button = document.getElementById('button');
-button.addEventListener('click', function() {
+button.addEventListener('click', function () {
     //create the request object
     var request = new XMLHttpRequest();
     // Open a request -- The browser is ready to send the request
-    request.open('GET', 'http://api.aerisapi.com/forecasts/'+ zip +'?client_id='+ CLIENT_ID + '&client_secret=' + CLIENT_SECRET);
+    request.open('GET', 'http://api.aerisapi.com/forecasts/' + zip + '?client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET);
 
     //create the callback
     request.onload = function () {
@@ -18,7 +18,7 @@ button.addEventListener('click', function() {
         if (request.readyState === 4 && request.status === 200) {
 
             var responseData = JSON.parse(request.responseText);
-                //   console.log(responseData);
+            //   console.log(responseData);
             renderText(responseData);
         }
     };
@@ -26,7 +26,7 @@ button.addEventListener('click', function() {
     request.send();
 });
 
-function renderText(responseData){
+function renderText(responseData) {
     var renderData = document.getElementById('data');
     var weather = responseData.response[0].periods[0];
 
@@ -45,44 +45,42 @@ function renderText(responseData){
     var displayMax = "Today's High temperature is " + maxTempF + "&#176;F";
     var displayMin = " with a low of " + minTempF + "&#176;F.";
 
-        if (maxTempF || minTempF < 32){
-    
-           // console.log("The temp is below freezing.")
-        }
+    if (maxTempF || minTempF < 32) {
 
-        if (maxTempC || minTempC < 0) {
+        // console.log("The temp is below freezing.")
+    }
 
-           // console.log("The temp is below freezing.")
-        }
+    if (maxTempC || minTempC < 0) {
+
+        // console.log("The temp is below freezing.")
+    }
 
     // Weather display
-        renderData.innerHTML = displayMax + displayMin + "<br>" + forecastDate;
-        
-      //  console.log(JSON.stringify(forecastDate));
+    renderData.innerHTML = displayMax + "<br>" + displayMin;
 
-      //  console.log(typeof maxTempC);
+
 
     //Display all days
-    
     var days = responseData.response[0].periods;
     var dailyForecastContainer = document.querySelectorAll('.box');
 
-    for(let i = 0; i < days.length;i++){
+    for (let i = 0; i < days.length; i++) {
 
         var dailyHigh = days[i].maxTempF;
         var dailyLow = days[i].minTempF;
         var dailyDate = days[i].dateTimeISO;
-        var img = days[i].icon;
+        var img;
+        var imgSrc =  "icons/"+days[i].icon;
         var timestamp = days[i].timestamp;
 
-       //  document.getElementsByClassName('box').innerHTML = dailyHigh + "<br>" + dailyLow + "<br>" + img;
+        for (var x = 0; x < dailyForecastContainer.length; x++) {
 
-         console.log(dailyHigh, dailyLow, dailyDate, timestamp);
-            console.log("The Daily High for "+dailyDate+" is "+dailyHigh);
-        
-        for(var x = 0; x < dailyForecastContainer.length; x++){
-
-            dailyForecastContainer[x].innerHTML = dailyHigh + "&#176;F" + "<br>" + dailyLow + "&#176;F" + "<br>" + img;
+            dailyForecastContainer[x].innerHTML = dailyHigh + "&#176;F" + "<br>" + dailyLow + "&#176;F";
+            img = document.createElement('IMG');
+            img.setAttribute('src', "icons/blizzard.png");
+            img.setAttribute("width", "55");
+            img.setAttribute("height", "55");
+            dailyForecastContainer[x].appendChild(img);
 
         }
     }
