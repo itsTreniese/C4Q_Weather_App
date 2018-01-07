@@ -7,11 +7,12 @@ var zip = 10453;
 
 var button = document.getElementById('button');
 button.addEventListener('click', function() {
-    
+    //create the request object
     var request = new XMLHttpRequest();
-
+    // Open a request -- The browser is ready to send the request
     request.open('GET', 'http://api.aerisapi.com/forecasts/'+ zip +'?client_id='+ CLIENT_ID + '&client_secret=' + CLIENT_SECRET);
 
+    //create the callback
     request.onload = function () {
         zip = document.getElementById('zip').value;
         if (request.readyState === 4 && request.status === 200) {
@@ -21,6 +22,7 @@ button.addEventListener('click', function() {
             renderText(responseData);
         }
     };
+    //send the request
     request.send();
 });
 
@@ -61,16 +63,29 @@ function renderText(responseData){
       //  console.log(typeof maxTempC);
 
     //Display all days
-    var dailyForecast = document.querySelectorAll('.box');
-    var x;
-    dailyForecast.forEach( div => {
+    
+    var days = responseData.response[0].periods;
 
-        var weatherRender1 = document.getElementById('box_1');
-        weatherRender1.innerHTML = responseData.response[0].periods[0].maxTempF;
+    for(let i = 0; i < days.length;i++){
+        
+       
 
+        var dailyHigh = days[i].maxTempF;
+        var dailyLow = days[i].minTempF;
+        var dailyDate = days[i].dateTimeISO;
+        var img = days[i].icon;
 
-    });
+         console.log(dailyHigh, dailyLow, dailyDate);
+            console.log("The Daily High for "+dailyDate+" is "+dailyHigh);
 
+        var dailyForecastContainer = document.querySelectorAll('.box');
+        
+        for(let x = 0; x < dailyForecastContainer.length; i++){
+
+            dailyForecastContainer[x].innerHTML = "I'm the container at" + x;
+
+        }
+    }
 
 
 }
