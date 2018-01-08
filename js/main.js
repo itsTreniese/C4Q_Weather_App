@@ -62,7 +62,6 @@ function renderText(responseData) {
 
     //Display all days
     var days = responseData.response[0].periods;
-    var dailyForecastContainer = document.querySelectorAll('.box');
 
     //Loop thru days of forecast periods
     for (let i = 0; i < days.length; i++) {
