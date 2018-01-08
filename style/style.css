@@ -28,7 +28,7 @@ body{
     display:grid;
     max-width: 100%;
     grid-template-columns:repeat(7, 1fr);
-    grid-template-rows: auto;
+    grid-template-rows: minmax(60px, auto);
 }
 .box{
 

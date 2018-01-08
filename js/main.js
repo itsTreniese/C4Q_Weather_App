@@ -38,27 +38,8 @@ function renderText(responseData) {
     var maxTempC = weather.maxTempC;
     var minTempC = weather.minTempC;
 
-    //Display current weather
-    var displayMax = `Today's High temperature is ${maxTempF} &#176;F`;
-    var displayMin = `with a low of ${minTempF} &#176;F`;
-
-    //Conditional display for freezing temps
-    if (maxTempF || minTempF < 32) {
-
-        // console.log("The temp is below freezing.")
-    } else {
-
-    }
-
-    if (maxTempC || minTempC < 0) {
-
-        // console.log("The temp is below freezing.")
-    } else {
-
-    }
-
     // Weather display
-    renderData.innerHTML = displayMax + "<br>" + displayMin;
+    renderData.innerHTML = `Today's High is <em>${maxTempF}</em> &#176;F  with a low of <em>${minTempF}</em> &#176;F`;
 
     //Display all days
     var days = responseData.response[0].periods;
