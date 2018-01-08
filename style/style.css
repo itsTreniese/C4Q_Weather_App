@@ -7,6 +7,17 @@
     max-height: auto;
 
 }
+html,
+body {
+    height: 100%;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+.container{
+    flex: 1 0 auto;
+}
 #data{
     margin: 10% 0;
     font-size: 2em;
@@ -25,4 +36,8 @@
 }
 .btn:focus{
     content:" ";
+}
+footer{
+    text-align: center;
+    margin-top: 10%;
 }
