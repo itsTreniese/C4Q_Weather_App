@@ -64,7 +64,7 @@ function renderText(responseData) {
     var days = responseData.response[0].periods;
     var dailyForecastContainer = document.querySelectorAll('.box');
 
-    //Loop thru days of forecast
+    //Loop thru days of forecast periods
     for (let i = 0; i < days.length; i++) {
 
         var dailyHigh = days[i].maxTempF;
@@ -76,25 +76,28 @@ function renderText(responseData) {
         var forecastDate = dailyDate.toString().slice(0, 9);
         var dateRender = document.createElement('p');
 
-        console.log(dailyHigh,dailyLow,dailyDate);
+           // console.log(dailyHigh,dailyLow,dailyDate);
 
-        //Loop thru .box to display daily forecast
-        for (var x = 0; x < dailyForecastContainer.length; x++) {
-            dailyForecastContainer[x].innerHTML = `High ${dailyHigh}&#176;F <br> Low ${dailyLow}&#176;F`;
-                
-                //Date for weather
-                dateRender.innerHTML = forecastDate;
-                
-                //weather image
-                img = document.createElement('IMG');
-                img.setAttribute('src', "icons/"+ imgSrc);
-                img.setAttribute("width", "55");
-                img.setAttribute("height", "55");
-                dailyForecastContainer[x].appendChild(img);
+        //7 Day forecast
+        var dailyWeatherDiv = document.createElement('div');
+        dailyWeatherDiv.innerHTML = `High ${dailyHigh}&#176;F <br> Low ${dailyLow}&#176;F`;
+        dailyWeatherDiv.classList.add('box');
 
-                dailyForecastContainer[x].appendChild(dateRender);
+        // Add weather icon
+        img = document.createElement('IMG');
+        img.setAttribute('src', "icons/"+ imgSrc);
+        img.setAttribute("width", "55");
+        img.setAttribute("height", "55");
+        dailyWeatherDiv.appendChild(img);
 
-        }
+        //Add date
+        dateRender.innerHTML = forecastDate;
+        dailyWeatherDiv.appendChild(dateRender);
+
+        //Get the weather element
+        var addWeatherInfo = document.querySelector(".weatherDisplay");
+        addWeatherInfo.appendChild(dailyWeatherDiv);
+
     }
 
 
