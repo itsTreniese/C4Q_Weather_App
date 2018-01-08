@@ -73,10 +73,10 @@ function renderText(responseData) {
         var img;
         var imgSrc = days[i].icon;
         var timestamp = days[i].timestamp;
-        var forecastDate = dailyDate.toString().slice(0, 9);
+        var forecastDate = dailyDate.toString().slice(0, 10);
         var dateRender = document.createElement('p');
 
-           // console.log(dailyHigh,dailyLow,dailyDate);
+        // console.log(dailyHigh,dailyLow,dailyDate);
 
         //7 Day forecast
         var dailyWeatherDiv = document.createElement('div');
