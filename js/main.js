@@ -10,7 +10,7 @@ button.addEventListener('click', function () {
     //create the request object
     var request = new XMLHttpRequest();
     // Open a request -- The browser is ready to send the request
-    request.open('GET', 'http://api.aerisapi.com/forecasts/' + zip + '?client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET);
+    request.open('GET', `http://api.aerisapi.com/forecasts/${zip}?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`);
 
     //create the callback
     request.onload = function () {
@@ -39,8 +39,8 @@ function renderText(responseData) {
     var minTempC = weather.minTempC;
 
     //Display current weather
-    var displayMax = "Today's High temperature is " + maxTempF + "&#176;F";
-    var displayMin = " with a low of " + minTempF + "&#176;F.";
+    var displayMax = `Today's High temperature is ${maxTempF} &#176;F`;
+    var displayMin = `with a low of ${minTempF} &#176;F`;
 
     //Conditional display for freezing temps
     if (maxTempF || minTempF < 32) {
@@ -69,21 +69,21 @@ function renderText(responseData) {
 
         var dailyHigh = days[i].maxTempF;
         var dailyLow = days[i].minTempF;
-        var dailyDate;
+        var dailyDate = days[i].dateTimeISO;
         var img;
         var imgSrc = days[i].icon;
         var timestamp = days[i].timestamp;
+        var forecastDate = dailyDate.toString().slice(0, 9);
+        var dateRender = document.createElement('p');
+
+        console.log(dailyHigh,dailyLow,dailyDate);
 
         //Loop thru .box to display daily forecast
         for (var x = 0; x < dailyForecastContainer.length; x++) {
-
-            dailyForecastContainer[x].innerHTML = "High " + dailyHigh + "&#176;F" + 
-                                                    "<br>" + dailyLow + "&#176;F";
+            dailyForecastContainer[x].innerHTML = `High ${dailyHigh}&#176;F <br> Low ${dailyLow}&#176;F`;
                 
                 //Date for weather
-                var forecastDate = weather.dateTimeISO;
-                dailyDate = document.createElement('p');
-                dailyDate.innerHTML = forecastDate;
+                dateRender.innerHTML = forecastDate;
                 
                 //weather image
                 img = document.createElement('IMG');
@@ -91,9 +91,8 @@ function renderText(responseData) {
                 img.setAttribute("width", "55");
                 img.setAttribute("height", "55");
                 dailyForecastContainer[x].appendChild(img);
-                dailyForecastContainer[x].insertBefore(dailyDate);
 
-
+                dailyForecastContainer[x].appendChild(dateRender);
 
         }
     }
